@@ -6,6 +6,8 @@
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!--App-->
+    <script src="js/controllers/MainController.js"></script>
 </head>
 <body>
 
@@ -19,14 +21,15 @@
 
 <script>
 
-    angular.module('app', ['ui.router'])
+    angular.module('app', ['ui.router', 'app.controllers.MainController'])
         .config(function ($stateProvider, $urlRouterProvider) {
 
             $stateProvider
 
                 .state('main', {
                     url: "/", // http://localhost#/
-                    templateUrl: "partials/main.html"
+                    templateUrl: "partials/main.html",
+                    controller: 'MainController'
                 })
                 .state('page1', {
                     url: "/page1", // http://localhost#/page1
