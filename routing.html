@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+</head>
+<body>
+
+<a href="#/">Main</a>
+<a ui-sref="page1">Page1</a>
+<a ui-sref="page2">Page2</a>
+
+<hr/>
+
+<ui-view></ui-view>
+
+<script>
+
+    angular.module('app', ['ui.router'])
+        .config(function ($stateProvider, $urlRouterProvider) {
+
+            $stateProvider
+
+                .state('main', {
+                    url: "/", // http://localhost#/
+                    templateUrl: "partials/main.html"
+                })
+                .state('page1', {
+                    url: "/page1", // http://localhost#/page1
+                    templateUrl: "partials/page1.html"
+                })
+                .state('page2', {
+                    url: "/page2", // http://localhost#/page2
+                    templateUrl: "partials/page2.html"
+                });
+
+            $urlRouterProvider.otherwise('/');
+        });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hdc">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="bower_components/angular/angular.js"></script>
+</head>
+<body>
+
+<div ng-controller="MainController">
+    <input type="text" ng-model="name"/>
+    <span>{{ name }}</span>
+
+    <input type="text" ng-model="productName"/>
+    <button ng-click="doAdd()">Add</button>
+
+    <table>
+        <thead>
+        <tr>
+            <td>#</td>
+            <td>ID</td>
+            <td>Name</td>
+            <td>DEL</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="p in products">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>
+                <button ng-click="doRemove($index)">X</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-controller="SecondController">
+    <input type="text" ng-model="name"/>
+    <span>{{ name }}</span>
+</div>
+<div ng-controller="PersonController">
+    <input type="text" ng-model="name"/>
+    <span>{{ name }}</span>
+</div>
+
+<script>
+
+    angular.module('hdc', ['hdc2'])
+        .controller("MainController", function ($scope) {
+            $scope.name = "Angular";
+
+            $scope.products = [
+                { id: 1, name: 'AngularJS'},
+                { id: 2, name: 'Ionicframework'},
+                { id: 3, name: 'NodeJS'}
+            ];
+
+            $scope.doAdd = function () {
+                var total = $scope.products.length;
+                $scope.products.push({
+                    id: total++,
+                    name: $scope.productName
+                });
+            };
+            // doRemove(1)
+            $scope.doRemove = function (idx) {
+                $scope.products.splice(idx, 1);
+            }
+
+        })
+        .controller('SecondController', function ($scope) {
+           $scope.name = "Ionicframework";
+        });
+
+    angular.module('hdc2', [])
+        .controller('PersonController', function ($scope) {
+            $scope.name = "NodeJS";
+        });
+
+</script>
+
+</body>
+</html>
