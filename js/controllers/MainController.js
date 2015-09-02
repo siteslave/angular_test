@@ -4,13 +4,18 @@ angular.module('app.controllers.MainController', [
     'app.services.ProductService'
 ])
     .controller('MainController', function ($scope, ProductService) {
-        //
-        //$scope.products = [
-        //    {id: 1, name: 'Angular'},
-        //    {id: 2, name: 'Ionic Framework'},
-        //    {id: 3, name: 'NodeJS'}
-        //];
+
         $scope.products = ProductService.getProduct();
+
+        $scope.users = [];
+
+        ProductService.getUsers()
+            .then(function (users) {
+                $scope.users = users;
+            }, function (err) {
+                console.log(err);
+            });
+
 
         $scope.fruits = [
             {name: 'Apple'},
