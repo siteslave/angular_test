@@ -1,3 +1,4 @@
+<h1>{{ title }}</h1>
 <h1>Main page</h1>
 <hr/>
 <ul>
@@ -5,3 +6,11 @@
         {{ p.name }}
     </li>
 </ul>
+
+<hr/>
+
+<table>
+    <tr ng-repeat="f in fruits">
+        <td>{{ f.name }}</td>
+    </tr>
+</table>

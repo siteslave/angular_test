@@ -43,7 +43,19 @@
                 })
                 .state('page2', {
                     url: "/page2", // http://localhost#/page2
-                    templateUrl: "partials/page2.html"
+                    templateUrl: "partials/page2.html",
+                    controller: function ($scope) {
+                        $scope.items = [1, 2, 3, 4, 5];
+                    }
+                })
+                .state('page3', {
+                    url: "/page3/:id/:name", // http://localhost#/page3/1/angular
+                    templateUrl: "partials/page3.html",
+                    controller: function ($scope, $stateParams) {
+                        console.log($stateParams);
+                        $scope.id = $stateParams.id; // 1
+                        $scope.name = $stateParams.name; // angular
+                    }
                 });
 
             $urlRouterProvider.otherwise('/');
